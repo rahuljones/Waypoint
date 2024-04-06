@@ -6,24 +6,39 @@ const router = require('./routes/router');
 
 const app = express();
 
-let map = {};
+let name = "Building";
+let adjMatrix = [[]];
+let namesArr = [];
 
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/api/get/:id', (req, res) => {
-    const id = req.params.id; // Get the 'id' parameter from the URL
-    res.send(map[id]);
+app.get('/api/getMatrix', (req, res) => {
+    //const id = req.params.id; // Get the 'id' parameter from the URL
+    res.send(adjMatrix);
 });
 
-app.post('/api/insert', (req, res) => {
-    let obj = req.body.stepsData;
-    const generatedId = useId(); // Using useId() here is not valid in a Node.js environment
-    map[generatedId] = obj;
-    const shareLink = "http://localhost:3000/response/" + generatedId; // Fix lastInsertId to generatedId
-    console.log("In the backend:" + shareLink);
-    res.send({ "link": shareLink });
+app.get('/api/getnames', (req, res) => {
+    //const id = req.params.id; // Get the 'id' parameter from the URL
+    res.send(namesArr);
+});
+app.get('/api/getTitle', (req, res) => {
+    //const id = req.params.id; // Get the 'id' parameter from the URL
+    res.send(name);
+});
+app.post('/api/insertTitle', (req, res) => {
+    name = req.body.NameData;
+    
+});
+app.post('/api/insertMatrix', (req, res) => {
+    let adjacencyMatrix = req.body.stepsData;
+    adjMatrix = adjacencyMatrix;
+    
+});
+app.post('/api/insertNames', (req, res) => {
+    let namesArray = req.body.namesData;
+    namesArr = namesArray;
 });
 
 app.listen(3001, () => {
