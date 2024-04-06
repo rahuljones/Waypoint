@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import BuildingNameForm from "./BuildingNameForm";
 import AddCheckPoint from "./AddCheckPoint";
 import CheckpointListElement from "./CheckPointListElement";
+import axios from "axios";
 
 
 
@@ -13,7 +14,16 @@ function CreateCheckpointsPage() {
 
     const submitCheckpoints = (e) => {
         e.preventDefault();
-        console.log(checkPoints);
+        axios.post('http://localhost:3001/api/insertnames', {
+            namesData : checkPoints
+        });
+        axios.post('http://localhost:3001/api/insertTitle', {
+            namesData : buildingName
+        });
+
+        const response = axios.get('http://localhost:3001/api/getNames');
+        console.log(response);
+
       };
 
     return (
