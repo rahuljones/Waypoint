@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import BuildingNameForm from "./BuildingNameForm";
+import { AppContext } from "../../context/AppContext";
+
+
 
 function CreateCheckpointsPage(){
-    const [buildingName, setBuildingName] = useState("");
 
     return(
         <div className="Background">
             <h2 className="Title">Waypoint</h2>
             <div className="InputFrame">
-                <BuildingNameForm buildingName={buildingName} OnBuildingNameChange={setBuildingName}/>
-                <AddCheckpoint/>
+                <BuildingNameForm/>
             </div>
             <div className="CheckPointList">
 

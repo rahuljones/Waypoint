@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
 
-function BuildingNameForm({ buildingName, OnBuildingNameChange }) {
+function BuildingNameForm() {
+
+  const { buildingName, setBuildingName } = useContext(AppContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const inputValue = e.target.elements.buildingName.value;
-    OnBuildingNameChange(inputValue);
+    setBuildingName(inputValue);
   };
 
   return (
@@ -16,7 +18,7 @@ function BuildingNameForm({ buildingName, OnBuildingNameChange }) {
         placeholder="Enter Building Name"
         name="buildingName"
         onChange={(e) => {
-          OnBuildingNameChange(e.target.value);
+          setBuildingName(e.target.value);
         }}
         required
       />
