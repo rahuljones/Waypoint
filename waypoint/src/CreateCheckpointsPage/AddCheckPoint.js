@@ -1,27 +1,30 @@
 import React, { useState, useContext } from "react";
 
-function AddCheckPoint({ }) {
+function AddCheckPoint({checkpoints, setCheckpoints }) {
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const inputValue = e.target.elements.buildingName.value;
-    OnBuildingNameChange(inputValue);
-  };
+    const [checkpointName, setCheckpointName] = useState(""); 
 
-  return (
-    <form onSubmit={handleSubmit} className="BuildingNameForm">
-      <input
-        className="BuildingNameInput"
-        type="text"
-        placeholder="Enter Building Name"
-        name="buildingName"
-        onChange={(e) => {
-          OnBuildingNameChange(e.target.value);
-        }}
-        required
-      />
-    </form>
-  );
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (checkpointName.trim() !== "") { // Check if checkpointName is not empty
+          setCheckpoints(prevCheckpoints => [...prevCheckpoints, checkpointName]); // Add checkpointName to checkpoints array
+          setCheckpointName(""); // Clear the input field
+        }
+      };
+
+      return (
+        <form onSubmit={handleSubmit} className="AddCheckpointForm">
+          <input
+            className="BuildingNameInput"
+            type="text"
+            placeholder="Enter Checkpoint Name"
+            name="checkpointName"
+            value={checkpointName} // Bind input value to checkpointName state
+            onChange={(e) => setCheckpointName(e.target.value)} // Update checkpointName state on input change
+          />
+          <button type="submit">Create</button> {/* Button to create checkpoint */}
+        </form>
+      );
 }
 
-export default BuildingNameForm;
+export default AddCheckPoint;

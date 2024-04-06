@@ -1,8 +1,6 @@
 import React, { useState, useContext } from "react";
 
-function BuildingNameForm() {
-
-  const { buildingName, setBuildingName } = useContext(AppContext);
+function BuildingNameForm({setBuildingName}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
