@@ -13,16 +13,16 @@ function AddCheckPoint({checkpoints, setCheckpoints }) {
       };
 
       return (
-        <form onSubmit={handleSubmit} className="AddCheckpointForm">
+        <form onSubmit={handleSubmit} className="AddCheckpointForm" >
           <input
-            className="BuildingNameInput"
+            className="CheckpointInput"
             type="text"
             placeholder="Enter Checkpoint Name"
             name="checkpointName"
             value={checkpointName} // Bind input value to checkpointName state
             onChange={(e) => setCheckpointName(e.target.value)} // Update checkpointName state on input change
           />
-          <button type="submit">Create</button> {/* Button to create checkpoint */}
+          <button type="submit" className="CheckpointCreateButton">+</button> {/* Button to create checkpoint */}
         </form>
       );
 }

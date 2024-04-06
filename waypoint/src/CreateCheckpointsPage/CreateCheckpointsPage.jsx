@@ -3,6 +3,7 @@ import BuildingNameForm from "./BuildingNameForm";
 import AddCheckPoint from "./AddCheckPoint";
 import CheckpointListElement from "./CheckPointListElement";
 import axios from "axios";
+import './CreateCheckpointsPage.css';
 
 
 
@@ -38,7 +39,7 @@ function CreateCheckpointsPage() {
                     <CheckpointListElement key={index} checkpoint={checkpoint} />
                 ))}
             </div>
-            <button type="Create Checkpoints" onClick={submitCheckpoints}>Create</button>
+            <button className="SubmitCheckpointsButton" type="Create Checkpoints" onClick={submitCheckpoints}>Create Checkpoints!</button>
         </div>
     );
 }
