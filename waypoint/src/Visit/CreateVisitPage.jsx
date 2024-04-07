@@ -1,11 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import CustomDropdown from "./CustomDropdown";
 
-
 function CreateVisitPage() {
-    const nav = useNavigate();
     const [buildingName, setBuildingName] = useState("Title");
     const [options, setOptions] = useState([]);
     const [adjMatrix, setMatrix] = useState([[]]);
@@ -28,50 +25,56 @@ function CreateVisitPage() {
                 console.error('Error fetching options:', error);
             }
         };
-    
+
         fetchOptions();
     }, []);
 
     useEffect(() => {
         const fetchMatrix = async () => {
+            console.log("Fetched matrix");
             try {
                 const bname = await axios.get('http://localhost:3001/api/getTitle');
                 setBuildingName(bname.data);
                 const response = await axios.get('http://localhost:3001/api/getMatrix');
-                setMatrix(response.data);     
-                //console.log(adjMatrix);   
+                setMatrix(response.data);
             } catch (error) {
-                console.error('Error fetching options:', error);
+                console.error('Error fetching matrix:', error);
             }
         };
-    
+
         fetchMatrix();
-    }, [[]]);
+    }, []);
+
+    useEffect(() => {
+        if (options === null) {
+            console.log("Options are null");
+            return;
+        }
+        console.log("IN USE EFFECT NULL" + options);
+        if (options.length > 0) {
+            for (let i = 0; i < options.length; i++) {
+                if (options[i] === selectedOption) {
+                    generatePath(i);
+                    break;
+                }
+            }
+        }
+    }, [options, selectedOption]);
 
     useEffect(() => {
         setNumSteps(path.length - 1);
         setCurStep(1);
     }, [path]);
 
-    const generatePath = async (e, k) => {
+    const generatePath = async (k) => {
         let shortPath = dijkstraShortestPath(adjMatrix, k);
         setPath(shortPath);
-        console.log(adjMatrix)
+        console.log(adjMatrix);
         console.log(path);
-        setNumSteps(path.length-1);
+        setNumSteps(shortPath.length - 1);
         setCurStep(1);
     };
-    
-    useEffect(() => {
-        if (options.length > 0) {
-            for (let i = 0; i < options.length; i++) {
-                if (options[i] === selectedOption) {
-                    generatePath(i);
-                    break; // Exit the loop once the condition is met
-                }
-            }
-        }
-    }, [selectedOption]);
+
     const handleSelect = (option) => {
         setSelectedOption(option);
     };
@@ -81,14 +84,11 @@ function CreateVisitPage() {
             <h2 className="Title">WAYPOINT</h2>
             <h2>{buildingName}</h2>
             <div className="InputFrame">
-                
-                
             </div>
             <div className="CheckPointList">
-            <CustomDropdown options={options} onSelect={handleSelect} text="From"/>
-            <text>{displayedText}</text>
-            <text>{currentStep}/{numSteps}</text>
-            {/*<button onClick={generatePath} style={{ width: '100px', height: '40px' }}></button>*/}
+                <CustomDropdown options={options} onSelect={handleSelect} text="From"/>
+                <text>{displayedText}</text>
+                <text>{currentStep}/{numSteps}</text>
             </div>
         </div>
     );
@@ -98,23 +98,23 @@ class PriorityQueue {
     constructor() {
         this.queue = [];
     }
-    
+
     enqueue(element, priority) {
         this.queue.push({element, priority});
         this.sort();
     }
-    
+
     dequeue() {
         if (!this.isEmpty()) {
             return this.queue.shift().element;
         }
         return null;
     }
-    
+
     sort() {
         this.queue.sort((a, b) => a.priority - b.priority);
     }
-    
+
     isEmpty() {
         return this.queue.length === 0;
     }
@@ -125,13 +125,13 @@ function dijkstraShortestPath(graph, targetNode) {
     const distances = Array(numNodes).fill(Infinity);
     const predecessor = Array(numNodes).fill(null);
     const pq = new PriorityQueue();
-    
+
     distances[0] = 0;
     pq.enqueue(0, 0);
-    
+
     while (!pq.isEmpty()) {
         const u = pq.dequeue();
-        
+
         if (u === targetNode) {
             const path = [];
             let node = u;
@@ -141,7 +141,7 @@ function dijkstraShortestPath(graph, targetNode) {
             }
             return path;
         }
-        
+
         for (let v = 0; v < numNodes; v++) {
             const weight = graph[u][v] ? graph[u][v][1] : 0;
             if (weight !== 0) {
@@ -154,7 +154,7 @@ function dijkstraShortestPath(graph, targetNode) {
             }
         }
     }
-    
+
     return null;
 }
 
