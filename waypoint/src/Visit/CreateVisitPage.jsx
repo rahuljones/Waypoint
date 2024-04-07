@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CustomDropdown from "./CustomDropdown";
-import './CreateVisitPage.css';
 
 function CreateVisitPage() {
     const [buildingName, setBuildingName] = useState("Title");
@@ -115,7 +114,10 @@ function CreateVisitPage() {
             <div className="InputFrame">
             </div>
             <div className="CheckPointList">
+            <div className="DropdownFrame">
                 <CustomDropdown options={options} onSelect={handleSelect} text="From"/>
+            </div>
+                
                 <text>{displayedText}</text>
                 <text>{currentStep}/{numSteps}</text>
                 <button onClick={advanceStep} style={{ width: '100px', height: '40px' }}></button>
