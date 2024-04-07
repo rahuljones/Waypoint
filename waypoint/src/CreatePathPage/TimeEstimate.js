@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function TimeEstimate({ setStepsDescription }) {
 
   return (
-    <form className="timeForm">
+    <form className="TimeForm">
       <input
         className="TimeInput"
         type="number"

@@ -112,16 +112,19 @@ function CreatePathPage() {
 
     return (
         <div className="Background">
-            <h2 className="Title">WAYPOINT</h2>
-            <h3 className="BuildingName">{buildingName}</h3>
-            <div className="DropdownFrame">
-                <CustomDropdown options={options} onSelect={handleSelect1} text="From"/>
-                <CustomDropdown options={options} onSelect={handleSelect2} text="To" />
+            <div className="Container">
+                <h2 className="Title">WAYPOINT</h2>
+                <h3 className="BuildingName">{buildingName}</h3>
+                <div className="DropdownFrame">
+                    <CustomDropdown options={options} onSelect={handleSelect1} text="From" />
+                    <CustomDropdown options={options} onSelect={handleSelect2} text="To" />
+                </div>
+                <StepsDescriptionForm setStepsDescription={setStepsDescription} />
+                <TimeEstimate setStepsDescription={setTimeEstimate} />
+                <button className="SubmitBtn" onClick={addStep}>Submit Directions</button>
+                <button className="CreateBtn" onClick={finalSubmit} style={{ backgroundColor: readyToCreate ? '#49D368' : '#BBD1C0' }}>Create</button>
             </div>
-            <StepsDescriptionForm setStepsDescription={setStepsDescription} />
-            <TimeEstimate setStepsDescription={setTimeEstimate} />
-            <button onClick={addStep}>Submit</button>
-            <button onClick={finalSubmit} style={{ backgroundColor: readyToCreate ? 'green' : 'red' }}>Create</button>
+
         </div>
     );
 }
