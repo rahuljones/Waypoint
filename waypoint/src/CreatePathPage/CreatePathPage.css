@@ -37,9 +37,7 @@ outline: none;
 .customDropdown:focus{
     border: none;
 }
-.customDropdown:{
-    background-color: #4ab99f;
-}
+
 
 .BuildingName{
     background: #0081AF;

@@ -61,7 +61,7 @@ function CreateVisitPage() {
     useEffect(() => {
         setNumSteps(path.length - 1);
         setCurStep(1);
-        if(selectedOption !== "Front Entrance" && path!==0 && path!==null && path!==[0]){
+        if (selectedOption !== "Front Entrance" && path !== 0 && path !== null && path !== [0]) {
             console.log(adjMatrix[path[0]][path[1]]);
             try {
                 if (adjMatrix[path[0]][path[1]] !== null) {
@@ -70,20 +70,20 @@ function CreateVisitPage() {
             } catch (error) {
                 console.log("error");
             }
-            
+
         }
         console.log(path);
         console.log(adjMatrix);
     }, [path]);
 
     useEffect(() => {
-        if(selectedOption !== "Front Entrance" && path!==0 && path!==null && path!==[0] && currentStep>0){
-            try{
-                setDisplayedText((adjMatrix[path[currentStep-1]][path[currentStep]])[0]);
-            } catch(error){
+        if (selectedOption !== "Front Entrance" && path !== 0 && path !== null && path !== [0] && currentStep > 0) {
+            try {
+                setDisplayedText((adjMatrix[path[currentStep - 1]][path[currentStep]])[0]);
+            } catch (error) {
                 console.log("error");
             }
-            
+
         }
     }, [currentStep]);
 
@@ -99,27 +99,28 @@ function CreateVisitPage() {
         setSelectedOption(option);
     };
 
-    function advanceStep(){
-        if(currentStep<numSteps){
-            setCurStep(currentStep+1);
+    function advanceStep() {
+        if (currentStep < numSteps) {
+            setCurStep(currentStep + 1);
         }
-        else{
+        else {
             setDisplayedText("You're Here!")
         }
     }
 
     return (
         <div className="Background">
-            <h2 className="Title">WAYPOINT</h2>
-            <h2>{buildingName}</h2>
-            <div className="InputFrame">
+            <div className="Container">
+                <h2 className="Title">WAYPOINT</h2>
+                <h2 className="BuildingName">{buildingName}</h2>
+                <CustomDropdown options={options} onSelect={handleSelect} text="From" />
+                <text className="InstructionDisplay">{displayedText}</text>
+                <div className="AdvanceDiv">
+                    <button className="AdvanceBtn" onClick={advanceStep} >&gt;</button>
+                    <label className="progressLabel">{currentStep}/{numSteps}</label>
+                </div>
             </div>
-            <div className="CheckPointList">
-                <CustomDropdown options={options} onSelect={handleSelect} text="From"/>
-                <text>{displayedText}</text>
-                <text>{currentStep}/{numSteps}</text>
-                <button onClick={advanceStep} style={{ width: '100px', height: '40px' }}></button>
-            </div>
+
         </div>
     );
 }
@@ -130,7 +131,7 @@ class PriorityQueue {
     }
 
     enqueue(element, priority) {
-        this.queue.push({element, priority});
+        this.queue.push({ element, priority });
         this.sort();
     }
 

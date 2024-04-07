@@ -1,17 +1,4 @@
-.DropdownFrame {
-    display: flex;
-    width: 90%;
-    gap: 50px;
-}
-
-.Container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 85%;
-}
-
-.customDropdown {
+.destinatioDropdown{
     background-color: #00ABE7;
     border-radius: 10px;
     /* From */
@@ -25,111 +12,82 @@ color: #FFFFFF;
 border: none;
 width: 100%;
 text-align: center;
-padding-top: 7%;
-padding-bottom: 7%;
-margin-bottom: 10%;
+padding-top: 3%;
+padding-bottom: 3%;
+margin-bottom: 5%;
+outline: none;
+}
+
+.desDiv{
+    width: 90%;
+    
+}
+.destinatioDropdown:hover{
+    background-color: #4ab99f;
+}
+.destinatioDropdown:focus{
+    border: none;
+}
+.InstructionDisplay{
+    background: #65BCDB;
+    width: 90%;
+    border-radius: 10px;
+    border: none;
+flex-grow: 1;
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 32px;
+color: #FFFFFF;
+outline: none;
+margin-bottom: 3%;
 
 }
 
-.BuildingName{
-    background: #0081AF;
-    width: 90%;
+.AdvanceDiv{
+    display: flex;
+    gap: 20px;
+}
+
+.AdvanceBtn{
+    background-color: #49D368;
+    outline: none;
+    border: none;
     border-radius: 10px;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    width: 90px;
+    height: 50px; 
     font-family: 'Poppins';
 font-style: normal;
 font-weight: 400;
 font-size: 16px;
-line-height: 24px;
+line-height: 32px;
+color: #FFFFFF;
+outline: none;
+}
+.AdvanceBtn:active{
+    background-color: #1fa43c;
+}
+
+
+.progressLabel{
+    background-color: #EABA6B;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    width: 90px;
+    height: 50px; 
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 32px;
+color: #FFFFFF;
+outline: none;
+text-align: center;
+justify-content: center;
+margin: auto;
+display: flex;
 align-items: center;
-text-align: center;
-color: #FFFFFF;
 }
-
-.StepsForm{
-    width: 90%;
-    flex-grow: 1;
-    margin-bottom: 5%;
-}
-.StepsInput{
-    background: #65BCDB;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    border: none;
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-color: #FFFFFF;
-
-}
-
-.TimeForm{
-    width: 90%;
-}
-
-.TimeInput{
-    background: #2DC7FF;
-    width: 100%;
-    border-radius: 10px;
-    border: none;
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-text-align: center;
-color: #FFFFFF;
-
-padding-top: 3%;
-padding-bottom: 3%;
-margin-bottom: 3%;
-}
-
-.SubmitBtn {
-    background: #EABA6B;
-    width: 90%;
-    border-radius: 10px;
-    border: none;
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 24px;
-text-align: center;
-color: #FFFFFF;
-
-padding-top: 3%;
-padding-bottom: 3%;
-margin-bottom: 3%;
-}
-
-.CreateBtn{
-    width: 90%;
-    border-radius: 10px;
-    border: none;
-
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 24px;
-text-align: center;
-color: #FFFFFF;
-
-padding-top: 3%;
-padding-bottom: 3%;
-}
-
-
-
-
-
-
 
