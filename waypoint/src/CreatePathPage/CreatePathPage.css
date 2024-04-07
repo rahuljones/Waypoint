@@ -28,7 +28,17 @@ text-align: center;
 padding-top: 7%;
 padding-bottom: 7%;
 margin-bottom: 10%;
+outline: none;
 
+}
+.customDropdown:hover{
+    background-color: #4ab99f;
+}
+.customDropdown:focus{
+    border: none;
+}
+.customDropdown:{
+    background-color: #4ab99f;
 }
 
 .BuildingName{
@@ -63,13 +73,22 @@ font-family: 'Poppins';
 font-style: normal;
 font-weight: 400;
 font-size: 16px;
-line-height: 24px;
+line-height: 32px;
 color: #FFFFFF;
-
+outline: none;
+}
+.StepsInput::placeholder{
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 32px;
+}
+.StepsInput:hover{
+    background-color: #0081AF;
 }
 
 .TimeForm{
     width: 90%;
+    
 }
 
 .TimeInput{
@@ -89,6 +108,13 @@ color: #FFFFFF;
 padding-top: 3%;
 padding-bottom: 3%;
 margin-bottom: 3%;
+outline: none;
+}
+.TimeInput::placeholder{
+    color: #FFFFFF;
+}
+.TimeInput:hover{
+    background:#0081AF;
 }
 
 .SubmitBtn {
@@ -110,6 +136,10 @@ padding-bottom: 3%;
 margin-bottom: 3%;
 }
 
+.SubmitBtn:active{
+    background-color: #ca8e2e;
+}
+
 .CreateBtn{
     width: 90%;
     border-radius: 10px;
@@ -125,6 +155,10 @@ color: #FFFFFF;
 
 padding-top: 3%;
 padding-bottom: 3%;
+}
+
+.CreateBtn:active{
+    background-color: #1c9035;
 }
 
 
