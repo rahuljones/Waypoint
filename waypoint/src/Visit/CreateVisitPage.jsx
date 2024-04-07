@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CustomDropdown from "./CustomDropdown";
+import './CreateVisitPage.css';
 
 function CreateVisitPage() {
     const [buildingName, setBuildingName] = useState("Title");
@@ -62,9 +63,14 @@ function CreateVisitPage() {
         setCurStep(1);
         if(selectedOption !== "Front Entrance" && path!==0 && path!==null && path!==[0]){
             console.log(adjMatrix[path[0]][path[1]]);
-            if(adjMatrix[path[0]][path[1]]!==null){
-                setDisplayedText((adjMatrix[path[0]][path[1]])[0]);
+            try {
+                if (adjMatrix[path[0]][path[1]] !== null) {
+                    setDisplayedText(adjMatrix[path[0]][path[1]][0]);
+                }
+            } catch (error) {
+                console.log("error");
             }
+            
         }
         console.log(path);
         console.log(adjMatrix);
@@ -72,7 +78,12 @@ function CreateVisitPage() {
 
     useEffect(() => {
         if(selectedOption !== "Front Entrance" && path!==0 && path!==null && path!==[0] && currentStep>0){
-            setDisplayedText((adjMatrix[path[currentStep-1]][path[currentStep]])[0]);
+            try{
+                setDisplayedText((adjMatrix[path[currentStep-1]][path[currentStep]])[0]);
+            } catch(error){
+                console.log("error");
+            }
+            
         }
     }, [currentStep]);
 
