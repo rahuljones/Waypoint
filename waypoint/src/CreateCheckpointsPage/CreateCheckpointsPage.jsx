@@ -3,15 +3,16 @@ import BuildingNameForm from "./BuildingNameForm";
 import AddCheckPoint from "./AddCheckPoint";
 import CheckpointListElement from "./CheckPointListElement";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import './CreateCheckpointsPage.css';
 
 
 
 
 function CreateCheckpointsPage() {
-
+    const nav = useNavigate();
     const [buildingName, setBuildingName] = useState("");
-    const [checkPoints, setCheckpoints] = useState([]);
+    const [checkPoints, setCheckpoints] = useState(["Front Entrance"]);
 
     const submitCheckpoints = (e) => {
         e.preventDefault();
@@ -24,12 +25,13 @@ function CreateCheckpointsPage() {
 
         const response = axios.get('http://localhost:3001/api/getNames');
         console.log(response);
+        nav(`/desc`);
 
       };
 
     return (
         <div className="Background">
-            <h2 className="Title">Waypoint</h2>
+            <h2 className="Title">WAYPOINT</h2>
             <div className="InputFrame">
                 <BuildingNameForm setBuildingName={setBuildingName} />
                 <AddCheckPoint checkpoints={checkPoints} setCheckpoints={setCheckpoints} />

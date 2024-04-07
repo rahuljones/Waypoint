@@ -14,7 +14,9 @@ function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<CreatePathPage/>} />
+
+          <Route path="/" element={<CreateCheckpointsPage/>} />
+          <Route path="/desc" element={<CreatePathPage/>} />
         </Routes>
       </div>
     </Router>
