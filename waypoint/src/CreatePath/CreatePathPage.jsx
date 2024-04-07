@@ -13,6 +13,7 @@ function CreatePathPage() {
     const [timeestimate, setTimeEstimate] = useState(0);
     const [adjArray, setAdjArray] = useState([[]]);
     const [readyToCreate, setReadiness] = useState(false);
+    const [buildingName, setBuildingName] = useState("");
 
     useEffect(() => {
         const fetchOptions = async () => {
@@ -25,6 +26,9 @@ function CreatePathPage() {
                     matrix[i][i]= [null,0]
                 }
                 setAdjArray(matrix);
+                let name = await axios.get('http://localhost:3001/api/getTitle');
+                setBuildingName(name.data);
+                console.log("This is the data"+name.data);
             } catch (error) {
                 console.error('Error fetching options:', error);
             }
@@ -44,7 +48,8 @@ function CreatePathPage() {
                         setAdjArray(temp);
                         console.log(stepsDescription);
                         console.log(timeestimate);
-                        console.log(adjArray);
+                        const mater = await axios.get('http://localhost:3001/api/getMatrix');
+                        console.log(mater.data);
                     }
                 }
             }
@@ -104,6 +109,7 @@ function CreatePathPage() {
     return (
         <div className="Background">
             <h2 className="Title">Waypoint</h2>
+            <h2>{buildingName}</h2>
             <div className="InputFrame">
                 <CustomDropdown options={options} onSelect={handleSelect1} />
                 <CustomDropdown options={options} onSelect={handleSelect2} />

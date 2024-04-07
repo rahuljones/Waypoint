@@ -28,7 +28,9 @@ app.get('/api/getTitle', (req, res) => {
     res.send(name);
 });
 app.post('/api/insertTitle', (req, res) => {
-    name = req.body.NameData;
+    let tempname = req.body.NameData;
+    name = tempname;
+    console.log(name);
     
 });
 app.post('/api/insertMatrix', (req, res) => {
