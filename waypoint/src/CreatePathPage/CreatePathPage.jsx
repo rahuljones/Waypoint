@@ -4,6 +4,7 @@ import StepsDescriptionForm from "./StepsDescriptionForm";
 import CustomDropdown from "./CustomDropdown";
 import TimeEstimate from "./TimeEstimate";
 import './CreatePathPage.css';
+import { useNavigate } from "react-router-dom";
 
 function CreatePathPage() {
     const [stepsDescription, setStepsDescription] = useState("");
@@ -15,6 +16,7 @@ function CreatePathPage() {
     const [adjArray, setAdjArray] = useState([[]]);
     const [readyToCreate, setReadiness] = useState(false);
     const [buildingName, setBuildingName] = useState("");
+    const nav = useNavigate();
 
     useEffect(() => {
         const fetchOptions = async () => {
@@ -96,6 +98,7 @@ function CreatePathPage() {
             stepsData : adjArray
             });
             console.log("Created");
+            nav(`/visit`);
         }
         else{
             console.log("NOT FULL ENOUGH");

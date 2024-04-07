@@ -17,28 +17,31 @@ function CreateCheckpointsPage() {
     const submitCheckpoints = (e) => {
         e.preventDefault();
         axios.post('http://localhost:3001/api/insertnames', {
-            namesData : checkPoints
+            namesData: checkPoints
         });
         axios.post('http://localhost:3001/api/insertTitle', {
-            NameData : buildingName
+            NameData: buildingName
         });
-        
+
         nav(`/desc`);
-      };
+    };
 
     return (
         <div className="Background">
-            <h2 className="Title">WAYPOINT</h2>
-            <div className="InputFrame">
-                <BuildingNameForm setBuildingName={setBuildingName} />
-                <AddCheckPoint checkpoints={checkPoints} setCheckpoints={setCheckpoints} />
+            <div className="Container">
+                <h2 className="Title">WAYPOINT</h2>
+                <div className="InputFrame">
+                    <BuildingNameForm setBuildingName={setBuildingName} />
+                    <AddCheckPoint checkpoints={checkPoints} setCheckpoints={setCheckpoints} />
+                </div>
+                <div className="CheckPointList">
+                    {checkPoints.map((checkpoint, index) => (
+                        <CheckpointListElement key={index} checkpoint={checkpoint} />
+                    ))}
+                </div>
+                <button className="SubmitCheckpointsButton" type="Create Checkpoints" onClick={submitCheckpoints}>Create Checkpoints!</button>
             </div>
-            <div className="CheckPointList">
-            {checkPoints.map((checkpoint, index) => (
-                    <CheckpointListElement key={index} checkpoint={checkpoint} />
-                ))}
-            </div>
-            <button className="SubmitCheckpointsButton" type="Create Checkpoints" onClick={submitCheckpoints}>Create Checkpoints!</button>
+
         </div>
     );
 }

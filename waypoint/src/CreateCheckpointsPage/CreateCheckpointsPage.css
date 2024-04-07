@@ -15,6 +15,7 @@
     flex-direction: column;
     align-items: center;
     height: 85%;
+    width: 100%;
 }
 
 
@@ -46,11 +47,12 @@ color: #000000;
     border: none;
     width: 100%;
     margin-bottom: 5%;
-
+    background: #0081AF;
+    border-radius: 10px;
 }
 
 .BuildingNameInput {
-    background: #0081AF;
+    background: transparent;
     width: 100%;
     padding-top: 3%;
     padding-bottom: 3%;
@@ -68,9 +70,14 @@ text-align: center;
 
 color: #FFFFFF;
 }
+
 .BuildingNameInput::placeholder {
     color: #e9e9e9;
 }
+.BuildingNameInput:hover{
+    background-color: #2DC7FF;
+}
+
 
 .AddCheckpointForm {
     display: flex;
@@ -103,6 +110,10 @@ margin-right: 3%;
     color: #e9e9e9;
 }
 
+.CheckpointInput:hover{
+    background-color: #d1922c;
+}
+
 .CheckpointCreateButton {
     background: #EABA6B;
     border-radius: 10px;
@@ -115,6 +126,10 @@ font-size: 32px;
 line-height: 24px;
 padding-right: 3%;
 padding-left: 3%;
+}
+
+.CheckpointCreateButton:hover{
+    background-color: #d1922c;
 }
 
 .CheckPointList{
@@ -155,10 +170,22 @@ margin-bottom: 2%;
     text-align: center;
     color: #FFFFFF;
     margin-bottom: 2%;
-
 }
 
+.SubmitCheckpointsButton:hover {
+    background-color: #1ab43c;
+}
 
+@media (min-width: 400px) {
+    .Container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 85%;
+        width: 40%;
+    }
+    
+}
 
 
 
