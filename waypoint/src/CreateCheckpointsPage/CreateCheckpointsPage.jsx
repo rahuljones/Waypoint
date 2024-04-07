@@ -22,11 +22,8 @@ function CreateCheckpointsPage() {
         axios.post('http://localhost:3001/api/insertTitle', {
             NameData : buildingName
         });
-
-        const response = axios.get('http://localhost:3001/api/getNames');
-        console.log(response);
+        
         nav(`/desc`);
-
       };
 
     return (

@@ -3,6 +3,7 @@ import axios from "axios";
 import StepsDescriptionForm from "./StepsDescriptionForm";
 import CustomDropdown from "./CustomDropdown";
 import TimeEstimate from "./TimeEstimate";
+import './CreatePathPage.css';
 
 function CreatePathPage() {
     const [stepsDescription, setStepsDescription] = useState("");
@@ -19,6 +20,9 @@ function CreatePathPage() {
         const fetchOptions = async () => {
             console.log("Fetched options");
             try {
+                const bname = await axios.get('http://localhost:3001/api/getTitle');
+                console.log(bname.data);
+                setBuildingName(bname.data);
                 const response = await axios.get('http://localhost:3001/api/getNames');
                 setOptions(response.data);
                 let matrix = new Array(response.data.length).fill(null).map(() => new Array(response.data.length).fill(null));
@@ -108,17 +112,16 @@ function CreatePathPage() {
 
     return (
         <div className="Background">
-            <h2 className="Title">Waypoint</h2>
-            <h2>{buildingName}</h2>
-            <div className="InputFrame">
-                <CustomDropdown options={options} onSelect={handleSelect1} />
-                <CustomDropdown options={options} onSelect={handleSelect2} />
-                <StepsDescriptionForm setStepsDescription={setStepsDescription} />
-                <TimeEstimate setStepsDescription={setTimeEstimate}/>
-                <button onClick={addStep}>Submit</button>
-                <button onClick={finalSubmit} style={{ backgroundColor: readyToCreate ? 'green' : 'red' }}>Create</button>
+            <h2 className="Title">WAYPOINT</h2>
+            <h3 className="BuildingName">{buildingName}</h3>
+            <div className="DropdownFrame">
+                <CustomDropdown options={options} onSelect={handleSelect1} text="From"/>
+                <CustomDropdown options={options} onSelect={handleSelect2} text="To" />
             </div>
-            
+            <StepsDescriptionForm setStepsDescription={setStepsDescription} />
+            <TimeEstimate setStepsDescription={setTimeEstimate} />
+            <button onClick={addStep}>Submit</button>
+            <button onClick={finalSubmit} style={{ backgroundColor: readyToCreate ? 'green' : 'red' }}>Create</button>
         </div>
     );
 }

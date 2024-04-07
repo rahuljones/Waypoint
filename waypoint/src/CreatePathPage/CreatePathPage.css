@@ -1,0 +1,42 @@
+.DropdownFrame {
+    display: flex;
+    width: 90%;
+    gap: 50px;
+}
+
+.customDropdown {
+    background-color: #00ABE7;
+    border-radius: 10px;
+    /* From */
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+color: #FFFFFF;
+border: none;
+width: 100%;
+text-align: center;
+padding-top: 3%;
+padding-bottom: 3%;
+padding-left: 3%;
+
+}
+
+.BuildingName{
+    background: #0081AF;
+    width: 90%;
+    border-radius: 10px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+align-items: center;
+text-align: center;
+color: #FFFFFF;
+}
+
