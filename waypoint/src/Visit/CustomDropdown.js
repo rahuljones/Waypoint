@@ -11,7 +11,7 @@ const CustomDropdown = ({ options, onSelect, text, selectedOptionProp }) => {
 
   return (
     <div className="desDiv">
-      <select className="destinatioDropdown" value={selectedOption} onChange={(e) => handleSelect(e.target.value)}>
+      <select className="destinatioDropdown" value={selectedOptionProp} onChange={(e) => handleSelect(e.target.value)}>
         <option value="">Where to?</option>
         {options.map((option, index) => (
           <option key={index} value={option}>{option}</option>
