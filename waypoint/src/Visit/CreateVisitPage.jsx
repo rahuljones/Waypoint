@@ -14,10 +14,8 @@ function CreateVisitPage() {
 
     useEffect(() => {
         const fetchOptions = async () => {
-            console.log("Fetched options");
             try {
                 const bname = await axios.get('http://localhost:3001/api/getTitle');
-                console.log(bname.data);
                 setBuildingName(bname.data);
                 const response = await axios.get('http://localhost:3001/api/getNames');
                 setOptions(response.data);
@@ -31,7 +29,6 @@ function CreateVisitPage() {
 
     useEffect(() => {
         const fetchMatrix = async () => {
-            console.log("Fetched matrix");
             try {
                 const bname = await axios.get('http://localhost:3001/api/getTitle');
                 setBuildingName(bname.data);
@@ -47,10 +44,9 @@ function CreateVisitPage() {
 
     useEffect(() => {
         if (options === null) {
-            console.log("Options are null");
+            console.log("NULL");
             return;
         }
-        console.log("IN USE EFFECT NULL" + options);
         if (options.length > 0) {
             for (let i = 0; i < options.length; i++) {
                 if (options[i] === selectedOption) {
@@ -64,20 +60,42 @@ function CreateVisitPage() {
     useEffect(() => {
         setNumSteps(path.length - 1);
         setCurStep(1);
+        if(selectedOption !== "Front Entrance" && path!==0 && path!==null && path!==[0]){
+            console.log(adjMatrix[path[0]][path[1]]);
+            if(adjMatrix[path[0]][path[1]]!==null){
+                setDisplayedText((adjMatrix[path[0]][path[1]])[0]);
+            }
+        }
+        console.log(path);
+        console.log(adjMatrix);
     }, [path]);
+
+    useEffect(() => {
+        if(selectedOption !== "Front Entrance" && path!==0 && path!==null && path!==[0] && currentStep>0){
+            setDisplayedText((adjMatrix[path[currentStep-1]][path[currentStep]])[0]);
+        }
+    }, [currentStep]);
 
     const generatePath = async (k) => {
         let shortPath = dijkstraShortestPath(adjMatrix, k);
         setPath(shortPath);
-        console.log(adjMatrix);
-        console.log(path);
         setNumSteps(shortPath.length - 1);
         setCurStep(1);
+        //setDisplayedText(adjMatrix[0][])
     };
 
     const handleSelect = (option) => {
         setSelectedOption(option);
     };
+
+    function advanceStep(){
+        if(currentStep<numSteps){
+            setCurStep(currentStep+1);
+        }
+        else{
+            setDisplayedText("You're Here!")
+        }
+    }
 
     return (
         <div className="Background">
@@ -89,6 +107,7 @@ function CreateVisitPage() {
                 <CustomDropdown options={options} onSelect={handleSelect} text="From"/>
                 <text>{displayedText}</text>
                 <text>{currentStep}/{numSteps}</text>
+                <button onClick={advanceStep} style={{ width: '100px', height: '40px' }}></button>
             </div>
         </div>
     );
@@ -154,8 +173,6 @@ function dijkstraShortestPath(graph, targetNode) {
             }
         }
     }
-
     return null;
 }
-
 export default CreateVisitPage;
