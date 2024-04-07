@@ -16,8 +16,14 @@ function CreatePathPage() {
     const [adjArray, setAdjArray] = useState([[]]);
     const [readyToCreate, setReadiness] = useState(false);
     const [buildingName, setBuildingName] = useState("");
+    const [resetStepsDescription, setResetStepsDescription] = useState(false); // Add state to reset StepsDescriptionForm
+    const [resetTimeEstimate, setResetTimeEstimate] = useState(false);
     const nav = useNavigate();
 
+    const resetDropdowns = () => {
+        setSelectedOption1("");
+        setSelectedOption2("");
+    };
     useEffect(() => {
         const fetchOptions = async () => {
             console.log("Fetched options");
@@ -63,7 +69,16 @@ function CreatePathPage() {
         if(isPathFromFrontEntrance(adjArray)){
             setReadiness(true);
         }
+        setResetStepsDescription(true); // Reset StepsDescriptionForm
+        setResetTimeEstimate(true);
+        // Reset dropdowns
+        resetDropdowns();
+        // Reset TimeEstimate
+        setResetTimeEstimate(true);
+        // Reset StepsDescriptionForm
+        setResetStepsDescription(true);
     };
+
     function isPathFromFrontEntrance(matrix) {
         // Helper function for DFS traversal
         function dfs(node) {
@@ -89,7 +104,7 @@ function CreatePathPage() {
         }
       
         return true; // If all nodes are visited, return true
-      }
+    }
 
     const finalSubmit = async (e) => {
         e.preventDefault();
@@ -119,15 +134,14 @@ function CreatePathPage() {
                 <h2 className="Title">WAYPOINT</h2>
                 <h3 className="BuildingName">{buildingName}</h3>
                 <div className="DropdownFrame">
-                    <CustomDropdown options={options} onSelect={handleSelect1} text="From" />
-                    <CustomDropdown options={options} onSelect={handleSelect2} text="To" />
-                </div>
-                <StepsDescriptionForm setStepsDescription={setStepsDescription} />
-                <TimeEstimate setStepsDescription={setTimeEstimate} />
+  <CustomDropdown options={options} onSelect={handleSelect1} text="From" selectedOptionProp={selectedOption1} />
+  <CustomDropdown options={options} onSelect={handleSelect2} text="To" selectedOptionProp={selectedOption2} />
+</div>
+                <StepsDescriptionForm setStepsDescription={setStepsDescription} resetStepsDescription={resetStepsDescription} setResetStepsDescription={setResetStepsDescription} />
+                <TimeEstimate setStepsDescription={setTimeEstimate} resetTimeEstimate={resetTimeEstimate} setResetTimeEstimate={setResetTimeEstimate} /> {/* Pass resetTimeEstimate state and setter */}
                 <button className="SubmitBtn" onClick={addStep}>Submit Directions</button>
                 <button className="CreateBtn" onClick={finalSubmit} style={{ backgroundColor: readyToCreate ? '#49D368' : '#BBD1C0' }}>Create</button>
             </div>
-
         </div>
     );
 }

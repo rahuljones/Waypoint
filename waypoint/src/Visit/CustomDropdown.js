@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
-const CustomDropdown = ({ options, onSelect }) => {
-  const [selectedOption, setSelectedOption] = useState(["Bob", "Not Bob"]);
+const CustomDropdown = ({ options, onSelect, text, selectedOptionProp }) => {
+  useEffect(() => {
+    // No need to maintain a separate state for selectedOption
+  }, [selectedOptionProp]);
 
   const handleSelect = (option) => {
-    setSelectedOption(option);
     onSelect(option);
   };
 
